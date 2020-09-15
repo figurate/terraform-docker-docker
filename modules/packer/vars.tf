@@ -21,3 +21,8 @@ variable "vars" {
   description = "Map of input variables"
   default     = {}
 }
+
+variable "rm" {
+  description = "Automatically remove container after execution"
+  default     = true
+}
