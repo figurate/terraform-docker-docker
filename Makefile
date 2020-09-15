@@ -19,6 +19,7 @@ validate:
 	$(TERRAFORM) init && $(TERRAFORM) validate && \
 		$(TERRAFORM) init modules/packer && $(TERRAFORM) validate modules/packer && \
 		$(TERRAFORM) init modules/aws-cli && $(TERRAFORM) validate modules/aws-cli && \
+		$(TERRAFORM) init modules/kubectl && $(TERRAFORM) validate modules/kubectl && \
 		$(TERRAFORM) init modules/s3cmd && $(TERRAFORM) validate modules/s3cmd && \
 		$(TERRAFORM) init modules/git && $(TERRAFORM) validate modules/git
 
@@ -26,6 +27,7 @@ test: validate
 	$(CHECKOV) -d /work && \
 		$(CHECKOV) -d /work/modules/packer && \
 		$(CHECKOV) -d /work/modules/aws-cli && \
+		$(CHECKOV) -d /work/modules/kubectl && \
 		$(CHECKOV) -d /work/modules/s3cmd && \
 		$(CHECKOV) -d /work/modules/git
 
@@ -36,6 +38,7 @@ docs: diagram
 	$(TERRAFORM_DOCS) markdown ./ >./README.md && \
 		$(TERRAFORM_DOCS) markdown ./modules/packer >./modules/packer/README.md && \
 		$(TERRAFORM_DOCS) markdown ./modules/aws-cli >./modules/aws-cli/README.md && \
+		$(TERRAFORM_DOCS) markdown ./modules/kubectl >./modules/kubectl/README.md && \
 		$(TERRAFORM_DOCS) markdown ./modules/s3cmd >./modules/s3cmd/README.md && \
 		$(TERRAFORM_DOCS) markdown ./modules/git >./modules/git/README.md
 
@@ -43,5 +46,6 @@ format:
 	$(TERRAFORM) fmt -list=true ./ && \
 		$(TERRAFORM) fmt -list=true ./modules/packer && \
 		$(TERRAFORM) fmt -list=true ./modules/aws-cli && \
+		$(TERRAFORM) fmt -list=true ./modules/kubectl && \
 		$(TERRAFORM) fmt -list=true ./modules/s3cmd && \
 		$(TERRAFORM) fmt -list=true ./modules/git
