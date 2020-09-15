@@ -21,6 +21,7 @@ No requirements.
 | command | Optional list of command elements used to start the container | `list(string)` | `[]` | no |
 | image | Docker container image | `any` | n/a | yes |
 | name | Docker container name | `any` | n/a | yes |
+| rm | Automatically remove container after execution | `bool` | `false` | no |
 
 ## Outputs
 

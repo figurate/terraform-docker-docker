@@ -11,3 +11,8 @@ variable "command" {
   type        = list(string)
   default     = []
 }
+
+variable "rm" {
+  description = "Automatically remove container after execution"
+  default     = false
+}
