@@ -5,4 +5,8 @@ module "container" {
   image   = "schickling/s3cmd"
   command = concat([var.command])
   rm      = var.rm
+
+  volumes = {
+    "/s3" = path.cwd
+  }
 }

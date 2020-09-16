@@ -22,6 +22,7 @@ No requirements.
 | image | Docker container image | `any` | n/a | yes |
 | name | Docker container name | `any` | n/a | yes |
 | rm | Automatically remove container after execution | `bool` | `false` | no |
+| volumes | A map of volume mount configurations | `map` | `{}` | no |
 
 ## Outputs
 

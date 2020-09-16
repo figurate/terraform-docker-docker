@@ -16,3 +16,8 @@ variable "rm" {
   description = "Automatically remove container after execution"
   default     = false
 }
+
+variable "volumes" {
+  description = "A map of volume mount configurations"
+  default     = {}
+}
