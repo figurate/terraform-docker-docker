@@ -17,9 +17,18 @@ resource "docker_container" "container" {
   dynamic "volumes" {
     for_each = var.volumes
     content {
-      container_path = volumes.key
-      host_path      = volumes.value
-      read_only      = true
+      container_path = volumes.value[0]
+      host_path      = volumes.value[1]
+      read_only      = volumes.value[2]
+    }
+  }
+
+  dynamic "ports" {
+    for_each = var.ports
+    content {
+      ip       = ports.value[0]
+      external = ports.value[1]
+      internal = ports.value[2]
     }
   }
 }

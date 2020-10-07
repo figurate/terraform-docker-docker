@@ -6,8 +6,8 @@ module "container" {
   command = concat([var.command])
   rm      = var.rm
 
-  volumes = {
-    "/root/.aws" = pathexpand("~/.aws")
-    "/aws"       = path.cwd
-  }
+  volumes = [
+    ["/root/.aws", pathexpand("~/.aws"), true],
+    ["/aws", path.cwd, true]
+  ]
 }

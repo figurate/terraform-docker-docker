@@ -6,8 +6,8 @@ module "container" {
   command = concat([var.command])
   rm      = var.rm
 
-  volumes = {
-    "/root" = pathexpand("~")
-    "/git"  = path.cwd
-  }
+  volumes = [
+    ["/root", pathexpand("~"), true],
+    ["/git", path.cwd, true],
+  ]
 }

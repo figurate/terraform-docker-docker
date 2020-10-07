@@ -6,7 +6,7 @@ module "container" {
   command = concat([var.command])
   rm      = var.rm
 
-  volumes = {
-    "/s3" = path.cwd
-  }
+  volumes = [
+    ["/s3", path.cwd, true],
+  ]
 }

@@ -18,6 +18,13 @@ variable "rm" {
 }
 
 variable "volumes" {
-  description = "A map of volume mount configurations"
-  default     = {}
+  description = "A list of volume mount configurations"
+  type        = list(tuple([string, string, bool]))
+  default     = []
+}
+
+variable "ports" {
+  description = "A list of port mapping configurations"
+  type        = list(tuple([string, number, number]))
+  default     = []
 }

@@ -6,7 +6,7 @@ module "container" {
   command = concat([var.command], local.var_file, local.vars, [var.template])
   rm      = var.rm
 
-  volumes = {
-    "/packer" = path.cwd
-  }
+  volumes = [
+    ["/packer", path.cwd, true],
+  ]
 }
