@@ -21,8 +21,9 @@ No requirements.
 | command | Optional list of command elements used to start the container | `list(string)` | `[]` | no |
 | image | Docker container image | `any` | n/a | yes |
 | name | Docker container name | `any` | n/a | yes |
+| ports | A list of port mapping configurations | `list(tuple([string, number, number]))` | `[]` | no |
 | rm | Automatically remove container after execution | `bool` | `false` | no |
-| volumes | A map of volume mount configurations | `map` | `{}` | no |
+| volumes | A list of volume mount configurations | `list(tuple([string, string, bool]))` | `[]` | no |
 
 ## Outputs
 

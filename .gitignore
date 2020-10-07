@@ -2,3 +2,4 @@
 .idea
 .terraform
 terraform-docker-docker-container.iml
+terraform.tfstate*
