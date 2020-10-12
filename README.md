@@ -6,13 +6,16 @@ Purpose: Blueprints for Docker Containers
 
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12.26 |
+| docker | ~> 2.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| docker | n/a |
+| docker | ~> 2.0 |
 
 ## Inputs
 
