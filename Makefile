@@ -26,7 +26,8 @@ validate:
 		$(TERRAFORM) init modules/ecr && $(TERRAFORM) validate modules/ecr && \
 		$(TERRAFORM) init modules/kubectl && $(TERRAFORM) validate modules/kubectl && \
 		$(TERRAFORM) init modules/s3cmd && $(TERRAFORM) validate modules/s3cmd && \
-		$(TERRAFORM) init modules/git && $(TERRAFORM) validate modules/git
+		$(TERRAFORM) init modules/git && $(TERRAFORM) validate modules/git && \
+		$(TERRAFORM) init modules/gradle && $(TERRAFORM) validate modules/gradle
 
 test: validate
 	$(CHECKOV) -d /work && \
@@ -35,7 +36,8 @@ test: validate
 		$(CHECKOV) -d /work/modules/ecr && \
 		$(CHECKOV) -d /work/modules/kubectl && \
 		$(CHECKOV) -d /work/modules/s3cmd && \
-		$(CHECKOV) -d /work/modules/git
+		$(CHECKOV) -d /work/modules/git && \
+		$(CHECKOV) -d /work/modules/gradle
 
 	$(TFSEC) /work && \
 		$(TFSEC) /work/modules/packer && \
@@ -43,7 +45,8 @@ test: validate
 		$(TFSEC) /work/modules/ecr && \
 		$(TFSEC) /work/modules/kubectl && \
 		$(TFSEC) /work/modules/s3cmd && \
-		$(TFSEC) /work/modules/git
+		$(TFSEC) /work/modules/git && \
+		$(TFSEC) /work/modules/gradle
 
 diagram:
 	$(DIAGRAMS) diagram.py
@@ -55,7 +58,8 @@ docs: diagram
 		$(TERRAFORM_DOCS) markdown ./modules/ecr >./modules/ecr/README.md && \
 		$(TERRAFORM_DOCS) markdown ./modules/kubectl >./modules/kubectl/README.md && \
 		$(TERRAFORM_DOCS) markdown ./modules/s3cmd >./modules/s3cmd/README.md && \
-		$(TERRAFORM_DOCS) markdown ./modules/git >./modules/git/README.md
+		$(TERRAFORM_DOCS) markdown ./modules/git >./modules/git/README.md && \
+		$(TERRAFORM_DOCS) markdown ./modules/gradle >./modules/gradle/README.md
 
 format:
 	$(TERRAFORM) fmt -list=true ./ && \
@@ -65,7 +69,9 @@ format:
 		$(TERRAFORM) fmt -list=true ./modules/kubectl && \
 		$(TERRAFORM) fmt -list=true ./modules/s3cmd && \
 		$(TERRAFORM) fmt -list=true ./modules/git && \
-		$(TERRAFORM) fmt -list=true ./examples/apachesling
+		$(TERRAFORM) fmt -list=true ./modules/gradle && \
+		$(TERRAFORM) fmt -list=true ./examples/apachesling && \
+		$(TERRAFORM) fmt -list=true ./examples/ghost
 
 example:
 	$(TERRAFORM) init examples/$(EXAMPLE) && $(TERRAFORM) plan examples/$(EXAMPLE)
