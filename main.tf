@@ -10,9 +10,10 @@ resource "docker_image" "container" {
 }
 
 resource "docker_container" "container" {
-  name    = var.name
-  image   = docker_image.container.latest
-  command = var.command
+  name        = var.name
+  image       = docker_image.container.latest
+  command     = var.command
+  working_dir = var.working_dir
 
   dynamic "volumes" {
     for_each = var.volumes

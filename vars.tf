@@ -12,6 +12,11 @@ variable "command" {
   default     = []
 }
 
+variable "working_dir" {
+  description = "Override the default working directory"
+  default     = null
+}
+
 variable "rm" {
   description = "Automatically remove container after execution"
   default     = false

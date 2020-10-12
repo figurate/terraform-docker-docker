@@ -24,6 +24,7 @@ No requirements.
 | ports | A list of port mapping configurations | `list(tuple([string, number, number]))` | `[]` | no |
 | rm | Automatically remove container after execution | `bool` | `false` | no |
 | volumes | A list of volume mount configurations | `list(tuple([string, string, bool]))` | `[]` | no |
+| working\_dir | Override the default working directory | `any` | `null` | no |
 
 ## Outputs
 

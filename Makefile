@@ -22,6 +22,7 @@ clean:
 validate:
 	$(TERRAFORM) init && $(TERRAFORM) validate && \
 		$(TERRAFORM) init modules/packer && $(TERRAFORM) validate modules/packer && \
+		$(TERRAFORM) init modules/python && $(TERRAFORM) validate modules/python && \
 		$(TERRAFORM) init modules/awscli && $(TERRAFORM) validate modules/awscli && \
 		$(TERRAFORM) init modules/ecr && $(TERRAFORM) validate modules/ecr && \
 		$(TERRAFORM) init modules/kubectl && $(TERRAFORM) validate modules/kubectl && \
@@ -32,6 +33,7 @@ validate:
 test: validate
 	$(CHECKOV) -d /work && \
 		$(CHECKOV) -d /work/modules/packer && \
+		$(CHECKOV) -d /work/modules/python && \
 		$(CHECKOV) -d /work/modules/awscli && \
 		$(CHECKOV) -d /work/modules/ecr && \
 		$(CHECKOV) -d /work/modules/kubectl && \
@@ -41,6 +43,7 @@ test: validate
 
 	$(TFSEC) /work && \
 		$(TFSEC) /work/modules/packer && \
+		$(TFSEC) /work/modules/python && \
 		$(TFSEC) /work/modules/awscli && \
 		$(TFSEC) /work/modules/ecr && \
 		$(TFSEC) /work/modules/kubectl && \
@@ -54,6 +57,7 @@ diagram:
 docs: diagram
 	$(TERRAFORM_DOCS) markdown ./ >./README.md && \
 		$(TERRAFORM_DOCS) markdown ./modules/packer >./modules/packer/README.md && \
+		$(TERRAFORM_DOCS) markdown ./modules/python >./modules/python/README.md && \
 		$(TERRAFORM_DOCS) markdown ./modules/awscli >./modules/awscli/README.md && \
 		$(TERRAFORM_DOCS) markdown ./modules/ecr >./modules/ecr/README.md && \
 		$(TERRAFORM_DOCS) markdown ./modules/kubectl >./modules/kubectl/README.md && \
@@ -64,6 +68,7 @@ docs: diagram
 format:
 	$(TERRAFORM) fmt -list=true ./ && \
 		$(TERRAFORM) fmt -list=true ./modules/packer && \
+		$(TERRAFORM) fmt -list=true ./modules/python && \
 		$(TERRAFORM) fmt -list=true ./modules/awscli && \
 		$(TERRAFORM) fmt -list=true ./modules/ecr && \
 		$(TERRAFORM) fmt -list=true ./modules/kubectl && \
