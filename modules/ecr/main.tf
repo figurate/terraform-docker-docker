@@ -8,7 +8,7 @@ module "container" {
 
   volumes = [
     ["/root/.aws", pathexpand("~/.aws"), true],
-    ["/aws", path.cwd, true],
+    ["/aws", path.cwd, false],
     ["/var/run/docker.sock", "/var/run/docker.sock", true],
   ]
 }
