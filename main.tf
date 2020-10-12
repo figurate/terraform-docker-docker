@@ -14,6 +14,7 @@ resource "docker_container" "container" {
   image       = docker_image.container.latest
   command     = var.command
   working_dir = var.working_dir
+  rm          = var.rm
 
   dynamic "volumes" {
     for_each = var.volumes
