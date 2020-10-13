@@ -8,7 +8,6 @@ module "container" {
   name    = "minio"
   image   = "minio/minio"
   command = ["server", "/data"]
-  //  rm      = true
 
   env = [
     "MINIO_ACCESS_KEY=${var.minio_access_key}",
