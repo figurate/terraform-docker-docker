@@ -8,6 +8,6 @@ module "container" {
 
   volumes = [
     ["/root/.aws", pathexpand(var.aws_config), true],
-    ["/aws", var.host_path != null ? pathexpand(var.host_path) : path.root, false]
+    ["/aws", var.host_path != null ? pathexpand(var.host_path) : path.cwd, false]
   ]
 }

@@ -9,6 +9,6 @@ module "container" {
 
   volumes = [
     ["/root", pathexpand(var.home_dir), true],
-    ["/work", var.host_path != null ? pathexpand(var.host_path) : path.root, false],
+    ["/work", var.host_path != null ? pathexpand(var.host_path) : path.cwd, false],
   ]
 }

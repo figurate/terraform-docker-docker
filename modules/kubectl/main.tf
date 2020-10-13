@@ -8,6 +8,6 @@ module "container" {
 
   volumes = [
     ["/root/.kube", pathexpand(var.kube_config), true],
-    ["/kube", var.host_path != null ? pathexpand(var.host_path) : path.root, false],
+    ["/kube", var.host_path != null ? pathexpand(var.host_path) : path.cwd, false],
   ]
 }
