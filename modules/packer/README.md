@@ -11,6 +11,7 @@ No provider.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | command | Packer command to execute | `string` | `"build"` | no |
+| host\_path | A writeable path containing the packer input files (defaults to module root) | `any` | `null` | no |
 | name | Docker container name | `string` | `"packer"` | no |
 | rm | Automatically remove container after execution | `bool` | `true` | no |
 | template | Packer input template | `any` | n/a | yes |

@@ -8,7 +8,7 @@ module "container" {
   rm          = var.rm
 
   volumes = [
-    ["/root", pathexpand("~"), true],
-    ["/work", path.root, false],
+    ["/root", pathexpand(var.home_dir), true],
+    ["/work", var.host_path != null ? pathexpand(var.host_path) : path.root, false],
   ]
 }

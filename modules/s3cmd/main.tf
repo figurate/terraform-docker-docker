@@ -7,6 +7,6 @@ module "container" {
   rm      = var.rm
 
   volumes = [
-    ["/s3", path.root, true],
+    ["/s3", var.host_path != null ? pathexpand(var.host_path) : path.root, true],
   ]
 }

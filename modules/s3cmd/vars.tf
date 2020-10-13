@@ -12,3 +12,8 @@ variable "rm" {
   description = "Automatically remove container after execution"
   default     = true
 }
+
+variable "host_path" {
+  description = "A path containing the project s3cmd input files (defaults to module root)"
+  default     = null
+}

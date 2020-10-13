@@ -3,11 +3,11 @@ module "container" {
 
   name    = var.name
   image   = "amazon/aws-cli"
-  command = concat([var.command])
+  command = [var.command]
   rm      = var.rm
 
   volumes = [
-    ["/root/.aws", pathexpand("~/.aws"), true],
-    ["/aws", path.root, false]
+    ["/root/.aws", pathexpand(var.aws_config), true],
+    ["/aws", var.host_path != null ? pathexpand(var.host_path) : path.root, false]
   ]
 }

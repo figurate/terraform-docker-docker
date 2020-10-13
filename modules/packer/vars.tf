@@ -26,3 +26,8 @@ variable "rm" {
   description = "Automatically remove container after execution"
   default     = true
 }
+
+variable "host_path" {
+  description = "A writeable path containing the packer input files (defaults to module root)"
+  default     = null
+}

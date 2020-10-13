@@ -7,7 +7,7 @@ module "container" {
   rm      = var.rm
 
   volumes = [
-    ["/root", pathexpand("~"), false],
-    ["/home/gradle", path.root, false],
+    ["/root", pathexpand(var.home_dir), false],
+    ["/home/gradle", var.host_path != null ? pathexpand(var.host_path) : path.root, false],
   ]
 }
