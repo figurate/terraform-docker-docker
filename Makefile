@@ -76,7 +76,8 @@ format:
 		$(TERRAFORM) fmt -list=true ./modules/git && \
 		$(TERRAFORM) fmt -list=true ./modules/gradle && \
 		$(TERRAFORM) fmt -list=true ./examples/apachesling && \
-		$(TERRAFORM) fmt -list=true ./examples/ghost
+		$(TERRAFORM) fmt -list=true ./examples/ghost && \
+		$(TERRAFORM) fmt -list=true ./examples/minio
 
 example:
 	$(TERRAFORM) init examples/$(EXAMPLE) && $(TERRAFORM) plan examples/$(EXAMPLE)

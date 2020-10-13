@@ -3,3 +3,4 @@
 .terraform
 terraform-docker-docker-container.iml
 terraform.tfstate*
+.minio.sys
