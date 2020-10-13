@@ -17,6 +17,12 @@ variable "working_dir" {
   default     = null
 }
 
+variable "env" {
+  description = "A set of environment overrides"
+  type        = set(string)
+  default     = []
+}
+
 variable "rm" {
   description = "Automatically remove container after execution"
   default     = false

@@ -22,6 +22,7 @@ Purpose: Blueprints for Docker Containers
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | command | Optional list of command elements used to start the container | `list(string)` | `[]` | no |
+| env | A set of environment overrides | `set(string)` | `[]` | no |
 | image | Docker container image | `any` | n/a | yes |
 | name | Docker container name | `any` | n/a | yes |
 | ports | A list of port mapping configurations | `list(tuple([string, number, number]))` | `[]` | no |

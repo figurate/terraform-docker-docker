@@ -15,6 +15,7 @@ resource "docker_container" "container" {
   command     = var.command
   working_dir = var.working_dir
   rm          = var.rm
+  env         = var.env
 
   dynamic "volumes" {
     for_each = var.volumes
