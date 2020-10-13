@@ -7,6 +7,6 @@ module "container" {
   rm      = var.rm
 
   volumes = [
-    ["/packer", path.cwd, true],
+    ["/packer", path.root, true],
   ]
 }

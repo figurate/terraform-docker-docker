@@ -8,6 +8,6 @@ module "container" {
 
   volumes = [
     ["/root", pathexpand("~"), true],
-    ["/git", path.cwd, false],
+    ["/git", path.root, false],
   ]
 }

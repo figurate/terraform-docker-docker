@@ -8,6 +8,6 @@ module "container" {
 
   volumes = [
     ["/root/.kube", pathexpand("~/.kube"), true],
-    ["/kube", path.cwd, true],
+    ["/kube", path.root, true],
   ]
 }

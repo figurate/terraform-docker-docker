@@ -9,6 +9,6 @@ module "container" {
 
   volumes = [
     ["/root", pathexpand("~"), true],
-    ["/work", path.cwd, false],
+    ["/work", path.root, false],
   ]
 }
