@@ -23,6 +23,12 @@ variable "env" {
   default     = []
 }
 
+variable "capabilities" {
+  description = "Additional capabilities configuration"
+  type = set(string)
+  default = []
+}
+
 variable "rm" {
   description = "Automatically remove container after execution"
   default     = false

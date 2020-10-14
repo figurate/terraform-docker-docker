@@ -17,6 +17,13 @@ resource "docker_container" "container" {
   rm          = var.rm
   env         = var.env
 
+  dynamic "capabilities" {
+    for_each = length(var.capabilities) > 0 ? [1] : []
+    content {
+      add = var.capabilities
+    }
+  }
+
   dynamic "volumes" {
     for_each = var.volumes
     content {
