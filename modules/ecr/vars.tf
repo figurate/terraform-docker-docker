@@ -18,6 +18,10 @@ variable "aws_config" {
   default     = "~/.aws"
 }
 
+variable "aws_region" {
+  description = "The AWS region of the target ECR repository(s)"
+}
+
 variable "host_path" {
   description = "A writeable path containing the project AWS input files (defaults to module root)"
   default     = null
