@@ -1,8 +1,9 @@
-variable "bundle_install_dir" {
-  description = "Local directory containing bundles to install"
-  default = null
+variable "bundle_install_dirs" {
+  description = "A list of local paths containing bundles to install (at specified start level)"
+  type = list(tuple([string, number]))
+  default = []
 }
 
 locals {
-  volumes = var.bundle_install_dir != null ? [["/opt/sling/bundles", var.bundle_install_dir, true]] : []
+  volumes = [for d in var.bundle_install_dirs: ["/opt/sling/bundles/${d[1]}", d[0], true]]
 }
