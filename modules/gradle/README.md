@@ -18,5 +18,7 @@ No provider.
 
 ## Outputs
 
-No output.
+| Name | Description |
+|------|-------------|
+| output\_dir | The host output directory for any generated artefacts |
 
