@@ -16,6 +16,8 @@ resource "docker_container" "container" {
   working_dir = var.working_dir
   rm          = var.rm
   env         = var.env
+  must_run    = false
+  attach      = false
 
   dynamic "capabilities" {
     for_each = length(var.capabilities) > 0 ? [1] : []

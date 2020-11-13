@@ -18,5 +18,8 @@ No provider.
 
 ## Outputs
 
-No output.
+| Name | Description |
+|------|-------------|
+| container\_logs | Logs from container execution |
+| exit\_code | Exit code of container |
 

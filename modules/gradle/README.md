@@ -20,5 +20,7 @@ No provider.
 
 | Name | Description |
 |------|-------------|
+| container\_logs | Logs from container execution |
+| exit\_code | Exit code of container |
 | output\_dir | The host output directory for any generated artefacts |
 
