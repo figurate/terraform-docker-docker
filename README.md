@@ -21,6 +21,7 @@ Purpose: Blueprints for Docker Containers
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| capabilities | Additional capabilities configuration | `set(string)` | `[]` | no |
 | command | Optional list of command elements used to start the container | `list(string)` | `[]` | no |
 | env | A set of environment overrides | `set(string)` | `[]` | no |
 | image | Docker container image | `any` | n/a | yes |

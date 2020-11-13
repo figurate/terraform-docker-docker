@@ -25,8 +25,8 @@ variable "env" {
 
 variable "capabilities" {
   description = "Additional capabilities configuration"
-  type = set(string)
-  default = []
+  type        = set(string)
+  default     = []
 }
 
 variable "rm" {

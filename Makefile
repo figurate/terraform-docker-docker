@@ -1,5 +1,7 @@
 SHELL:=/bin/bash
-TERRAFORM_VERSION=0.12.28
+AWS_DEFAULT_REGION?=ap-southeast-2
+
+TERRAFORM_VERSION=0.13.4
 TERRAFORM=docker run --rm -v "${PWD}:/work" -v "${HOME}:/root" -e AWS_DEFAULT_REGION=$(AWS_DEFAULT_REGION) -e http_proxy=$(http_proxy) --net=host -w /work hashicorp/terraform:$(TERRAFORM_VERSION)
 
 TERRAFORM_DOCS=docker run --rm -v "${PWD}:/work" tmknom/terraform-docs
@@ -31,25 +33,9 @@ validate:
 		$(TERRAFORM) init modules/gradle && $(TERRAFORM) validate modules/gradle
 
 test: validate
-	$(CHECKOV) -d /work && \
-		$(CHECKOV) -d /work/modules/packer && \
-		$(CHECKOV) -d /work/modules/python && \
-		$(CHECKOV) -d /work/modules/awscli && \
-		$(CHECKOV) -d /work/modules/ecr && \
-		$(CHECKOV) -d /work/modules/kubectl && \
-		$(CHECKOV) -d /work/modules/s3cmd && \
-		$(CHECKOV) -d /work/modules/git && \
-		$(CHECKOV) -d /work/modules/gradle
+	$(CHECKOV) -d /work
 
-	$(TFSEC) /work && \
-		$(TFSEC) /work/modules/packer && \
-		$(TFSEC) /work/modules/python && \
-		$(TFSEC) /work/modules/awscli && \
-		$(TFSEC) /work/modules/ecr && \
-		$(TFSEC) /work/modules/kubectl && \
-		$(TFSEC) /work/modules/s3cmd && \
-		$(TFSEC) /work/modules/git && \
-		$(TFSEC) /work/modules/gradle
+	$(TFSEC) /work
 
 diagram:
 	$(DIAGRAMS) diagram.py
