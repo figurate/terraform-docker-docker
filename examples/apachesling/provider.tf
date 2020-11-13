@@ -1,3 +1,3 @@
 provider "docker" {
-  host = "tcp://127.0.0.1:2375/"
+  host = "tcp://127.0.0.1:2376/"
 }
