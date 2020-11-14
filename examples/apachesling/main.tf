@@ -1,3 +1,10 @@
+module "build" {
+  source = "figurate/docker-container/docker//modules/gradle"
+
+  host_path = abspath(path.root)
+  command = "copyDeps"
+}
+
 module "container" {
   source = "../.."
 
@@ -11,5 +18,6 @@ module "container" {
     ["localhost", 9090, 9090],
   ]
 
-  volumes = concat(local.volumes, [["/opt/sling/jmx_prometheus_javaagent-0.14.0.jar", "/Users/fortuna/Development/whistlepost/build/agent/jmx_prometheus_javaagent-0.14.0.jar", true], ["/opt/sling/prometheus.yml", "/Users/fortuna/Development/figurate/terraform-docker-docker-container/examples/apachesling/prometheus.yml", true]])
+  volumes = concat(local.volumes, [["/opt/sling/jmx_prometheus_javaagent-0.14.0.jar", "${abspath(path.root)}/build/libs/jmx_prometheus_javaagent-0.14.0.jar", true], ["/opt/sling/prometheus.yml", "${abspath(path.root)}/prometheus.yml", true]])
+  depends_on = [module.build]
 }

@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "io.prometheus.jmx:jmx_prometheus_javaagent:$prometheusVersion"
+}
+
+task copyDeps(type: Copy) {
+    from configurations.compile
+    into 'build/libs'
+}
+
+build.dependsOn copyDeps
