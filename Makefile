@@ -12,14 +12,14 @@ clean:
 
 validate:
 	$(TERRAFORM) init && $(TERRAFORM) validate && \
-		$(TERRAFORM) init modules/packer && $(TERRAFORM) validate modules/packer && \
-		$(TERRAFORM) init modules/python && $(TERRAFORM) validate modules/python && \
-		$(TERRAFORM) init modules/awscli && $(TERRAFORM) validate modules/awscli && \
-		$(TERRAFORM) init modules/ecr && $(TERRAFORM) validate modules/ecr && \
-		$(TERRAFORM) init modules/kubectl && $(TERRAFORM) validate modules/kubectl && \
-		$(TERRAFORM) init modules/s3cmd && $(TERRAFORM) validate modules/s3cmd && \
-		$(TERRAFORM) init modules/git && $(TERRAFORM) validate modules/git && \
-		$(TERRAFORM) init modules/gradle && $(TERRAFORM) validate modules/gradle
+		$(TERRAFORM) -chdir=modules/packer init && $(TERRAFORM) -chdir=modules/packer validate && \
+		$(TERRAFORM) -chdir=modules/python init && $(TERRAFORM) -chdir=modules/python validate && \
+		$(TERRAFORM) -chdir=modules/awscli init && $(TERRAFORM) -chdir=modules/awscli validate && \
+		$(TERRAFORM) -chdir=modules/ecr init && $(TERRAFORM) -chdir=modules/ecr validate && \
+		$(TERRAFORM) -chdir=modules/kubectl init && $(TERRAFORM) -chdir=modules/kubectl validate && \
+		$(TERRAFORM) -chdir=modules/s3cmd init && $(TERRAFORM) -chdir=modules/s3cmd validate && \
+		$(TERRAFORM) -chdir=modules/git init && $(TERRAFORM) -chdir=modules/git validate && \
+		$(TERRAFORM) -chdir=modules/gradle init && $(TERRAFORM) -chdir=modules/gradle validate
 
 test: validate
 	$(CHECKOV) -d /work
