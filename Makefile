@@ -2,28 +2,28 @@ SHELL:=/bin/bash
 include .env
 
 EXAMPLE=$(wordlist 2, $(words $(MAKECMDGOALS)), $(MAKECMDGOALS))
+VERSION=$(wordlist 2, $(words $(MAKECMDGOALS)), $(MAKECMDGOALS))
 
-.PHONY: all clean validate test docs format
+.PHONY: all clean validate test diagram docs format release
 
-all: validate test docs format
+all: test docs format
 
 clean:
 	rm -rf .terraform/
 
 validate:
-	$(TERRAFORM) init && $(TERRAFORM) validate && \
-		$(TERRAFORM) -chdir=modules/packer init && $(TERRAFORM) -chdir=modules/packer validate && \
-		$(TERRAFORM) -chdir=modules/python init && $(TERRAFORM) -chdir=modules/python validate && \
-		$(TERRAFORM) -chdir=modules/awscli init && $(TERRAFORM) -chdir=modules/awscli validate && \
-		$(TERRAFORM) -chdir=modules/ecr init && $(TERRAFORM) -chdir=modules/ecr validate && \
-		$(TERRAFORM) -chdir=modules/kubectl init && $(TERRAFORM) -chdir=modules/kubectl validate && \
-		$(TERRAFORM) -chdir=modules/s3cmd init && $(TERRAFORM) -chdir=modules/s3cmd validate && \
-		$(TERRAFORM) -chdir=modules/git init && $(TERRAFORM) -chdir=modules/git validate && \
-		$(TERRAFORM) -chdir=modules/gradle init && $(TERRAFORM) -chdir=modules/gradle validate
+	$(TERRAFORM) init -upgrade && $(TERRAFORM) validate && \
+		$(TERRAFORM) -chdir=modules/packer init -upgrade && $(TERRAFORM) -chdir=modules/packer validate && \
+		$(TERRAFORM) -chdir=modules/python init -upgrade && $(TERRAFORM) -chdir=modules/python validate && \
+		$(TERRAFORM) -chdir=modules/awscli init -upgrade && $(TERRAFORM) -chdir=modules/awscli validate && \
+		$(TERRAFORM) -chdir=modules/ecr init -upgrade && $(TERRAFORM) -chdir=modules/ecr validate && \
+		$(TERRAFORM) -chdir=modules/kubectl init -upgrade && $(TERRAFORM) -chdir=modules/kubectl validate && \
+		$(TERRAFORM) -chdir=modules/s3cmd init -upgrade && $(TERRAFORM) -chdir=modules/s3cmd validate && \
+		$(TERRAFORM) -chdir=modules/git init -upgrade && $(TERRAFORM) -chdir=modules/git validate && \
+		$(TERRAFORM) -chdir=modules/gradle init -upgrade && $(TERRAFORM) -chdir=modules/gradle validate
 
 test: validate
 	$(CHECKOV) -d /work
-
 	$(TFSEC) /work
 
 diagram:
@@ -55,4 +55,7 @@ format:
 		$(TERRAFORM) fmt -list=true ./examples/minio
 
 example:
-	$(TERRAFORM) init examples/$(EXAMPLE) && $(TERRAFORM) plan examples/$(EXAMPLE)
+	$(TERRAFORM) -chdir=examples/$(EXAMPLE) init -upgrade && $(TERRAFORM) -chdir=examples/$(EXAMPLE) plan -input=false
+
+release: test
+	git tag $(VERSION) && git push --tags
