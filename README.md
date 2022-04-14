@@ -1,5 +1,7 @@
 # Docker Container
 
+[![CI](https://github.com/figurate/terraform-docker-docker-container/actions/workflows/main.yml/badge.svg)](https://github.com/figurate/terraform-docker-docker-container/actions/workflows/main.yml)
+
 Purpose: Blueprints for Docker Containers
 
 ![Docker Container](docker\_container.png)
