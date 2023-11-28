@@ -12,15 +12,7 @@ clean:
 	rm -rf .terraform/
 
 validate:
-	$(TERRAFORM) init -upgrade && $(TERRAFORM) validate && \
-		$(TERRAFORM) -chdir=modules/packer init -upgrade && $(TERRAFORM) -chdir=modules/packer validate && \
-		$(TERRAFORM) -chdir=modules/python init -upgrade && $(TERRAFORM) -chdir=modules/python validate && \
-		$(TERRAFORM) -chdir=modules/awscli init -upgrade && $(TERRAFORM) -chdir=modules/awscli validate && \
-		$(TERRAFORM) -chdir=modules/ecr init -upgrade && $(TERRAFORM) -chdir=modules/ecr validate && \
-		$(TERRAFORM) -chdir=modules/kubectl init -upgrade && $(TERRAFORM) -chdir=modules/kubectl validate && \
-		$(TERRAFORM) -chdir=modules/s3cmd init -upgrade && $(TERRAFORM) -chdir=modules/s3cmd validate && \
-		$(TERRAFORM) -chdir=modules/git init -upgrade && $(TERRAFORM) -chdir=modules/git validate && \
-		$(TERRAFORM) -chdir=modules/gradle init -upgrade && $(TERRAFORM) -chdir=modules/gradle validate
+	$(TERRAFORM) init  && $(TERRAFORM) validate
 
 test: validate
 	$(CHECKOV) -d /work
@@ -41,21 +33,10 @@ docs: diagram
 		$(TERRAFORM_DOCS) markdown ./modules/gradle >./modules/gradle/README.md
 
 format:
-	$(TERRAFORM) fmt -list=true ./ && \
-		$(TERRAFORM) fmt -list=true ./modules/packer && \
-		$(TERRAFORM) fmt -list=true ./modules/python && \
-		$(TERRAFORM) fmt -list=true ./modules/awscli && \
-		$(TERRAFORM) fmt -list=true ./modules/ecr && \
-		$(TERRAFORM) fmt -list=true ./modules/kubectl && \
-		$(TERRAFORM) fmt -list=true ./modules/s3cmd && \
-		$(TERRAFORM) fmt -list=true ./modules/git && \
-		$(TERRAFORM) fmt -list=true ./modules/gradle && \
-		$(TERRAFORM) fmt -list=true ./examples/apachesling && \
-		$(TERRAFORM) fmt -list=true ./examples/ghost && \
-		$(TERRAFORM) fmt -list=true ./examples/minio
+	$(TERRAFORM) fmt -list=true -recursive
 
 example:
-	$(TERRAFORM) -chdir=examples/$(EXAMPLE) init -upgrade && $(TERRAFORM) -chdir=examples/$(EXAMPLE) plan -input=false
+	$(TERRAFORM) -chdir=examples/$(EXAMPLE) init  && $(TERRAFORM) -chdir=examples/$(EXAMPLE) plan -input=false
 
 release: test
 	git tag $(VERSION) && git push --tags
